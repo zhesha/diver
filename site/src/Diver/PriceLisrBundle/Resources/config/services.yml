@@ -1,0 +1,7 @@
+parameters:
+#    diver_price_lisr.example.class: Diver\PriceLisrBundle\Example
+
+services:
+#    diver_price_lisr.example:
+#        class: %diver_price_lisr.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

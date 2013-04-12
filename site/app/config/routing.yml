@@ -1,0 +1,4 @@
+diver_price_lisr:
+    resource: "@DiverPriceLisrBundle/Resources/config/routing.yml"
+    prefix:   /
+
