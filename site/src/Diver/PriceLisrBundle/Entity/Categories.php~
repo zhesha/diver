@@ -171,27 +171,4 @@ class Categories
     {
         return $this->items;
     }
-
-    /**
-     * Set name_ru
-     *
-     * @param string $nameRu
-     * @return Categories
-     */
-    public function setNameRu($nameRu)
-    {
-        $this->name_ru = $nameRu;
-    
-        return $this;
-    }
-
-    /**
-     * Get name_ru
-     *
-     * @return string 
-     */
-    public function getNameRu()
-    {
-        return $this->name_ru;
-    }
 }

@@ -1,0 +1,247 @@
+<?php
+
+namespace Diver\PriceLisrBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Diver\PriceLisrBundle\Entity\Categories;
+
+/**
+ * Items
+ *
+ * @ORM\Table()
+ * @ORM\Entity(repositoryClass="Diver\PriceLisrBundle\Entity\ItemsRepository")
+ */
+class Items
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name_ru", type="string", length=255)
+     */
+    private $name_ru;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="fullname", type="text")
+     */
+    private $fullname;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="partnumber", type="string", length=255)
+     */
+    private $partnumber;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="manufacturer", type="string", length=255)
+     */
+    private $manufacturer;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="price", type="integer")
+     */
+    private $price;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="garant", type="integer")
+     */
+    private $garant;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="cena_dyler", type="float")
+     */
+    private $cena_dyler;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="cena_gurt", type="float")
+     */
+    private $cena_gurt;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="cena_dribnyj_gurt", type="float")
+     */
+    private $cena_dribnyj_gurt;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="cena_rozdrib", type="float")
+     */
+    private $cena_rozdrib;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="ostatok_lviv", type="integer")
+     */
+    private $ostatok_lviv;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="ostatok_kyyiv", type="integer")
+     */
+    private $ostatok_kyyiv;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="ostatok_odesa", type="integer")
+     */
+    private $ostatok_odesa;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Categories", mappedBy="items")
+     */
+    private $category;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Items
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set fullName
+     *
+     * @param string $fullName
+     * @return Items
+     */
+    public function setFullName($fullName)
+    {
+        $this->fullName = $fullName;
+    
+        return $this;
+    }
+
+    /**
+     * Get fullName
+     *
+     * @return string 
+     */
+    public function getFullName()
+    {
+        return $this->fullName;
+    }
+
+    /**
+     * Set price
+     *
+     * @param integer $price
+     * @return Items
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+    
+        return $this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return integer 
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->category = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add category
+     *
+     * @param \Diver\PriceLisrBundle\Entity\Categories $category
+     * @return Items
+     */
+    public function addCategory(\Diver\PriceLisrBundle\Entity\Categories $category)
+    {
+        $this->category[] = $category;
+    
+        return $this;
+    }
+
+    /**
+     * Remove category
+     *
+     * @param \Diver\PriceLisrBundle\Entity\Categories $category
+     */
+    public function removeCategory(\Diver\PriceLisrBundle\Entity\Categories $category)
+    {
+        $this->category->removeElement($category);
+    }
+
+    /**
+     * Get category
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+}
