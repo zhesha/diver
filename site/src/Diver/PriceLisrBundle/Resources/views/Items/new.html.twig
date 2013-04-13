@@ -1,6 +1,6 @@
-{% extends '::base.html.twig' %}
+{% extends 'DiverPriceLisrBundle::default.html.twig' %}
 
-{% block body -%}
+{% block content -%}
     <h1>Items creation</h1>
 
     <form action="{{ path('items_create') }}" method="post" {{ form_enctype(form) }}>

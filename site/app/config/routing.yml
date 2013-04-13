@@ -2,3 +2,10 @@ diver_price_lisr:
     resource: "@DiverPriceLisrBundle/Resources/config/routing.yml"
     prefix:   /
 
+login:
+    pattern:   /login
+    defaults:  { _controller: DiverPriceLisrBundle:Default:login }
+login_check:
+    pattern:   /login_check
+logout:
+    path:   /logout

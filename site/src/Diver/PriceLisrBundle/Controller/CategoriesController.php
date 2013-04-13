@@ -23,10 +23,9 @@ class CategoriesController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('DiverPriceLisrBundle:Categories')->findAll();
-
         return $this->render('DiverPriceLisrBundle:Categories:index.html.twig', array(
-            'entities' => $entities,
-        ));
+                'entities' => $entities,
+            ));
     }
 
     /**

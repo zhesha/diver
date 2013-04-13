@@ -1,0 +1,14 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}My cool blog posts{% endblock %}
+
+{% block body %}
+    {% if app.user %}
+        <a href="{{ path('logout') }}">logout</a>
+    {% else %}
+        <a href="{{ path('login') }}">login</a>
+    {% endif %}
+    <a href="{{ path('categories') }}">categories</a>
+    <a href="{{ path('items') }}">items</a>
+    {% block content %}{% endblock %}
+{% endblock %}
