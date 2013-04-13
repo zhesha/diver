@@ -1,0 +1,30 @@
+items:
+    pattern:  /
+    defaults: { _controller: "DiverPriceLisrBundle:Items:index" }
+
+items_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "DiverPriceLisrBundle:Items:show" }
+
+items_new:
+    pattern:  /new
+    defaults: { _controller: "DiverPriceLisrBundle:Items:new" }
+
+items_create:
+    pattern:  /create
+    defaults: { _controller: "DiverPriceLisrBundle:Items:create" }
+    requirements: { _method: post }
+
+items_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "DiverPriceLisrBundle:Items:edit" }
+
+items_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "DiverPriceLisrBundle:Items:update" }
+    requirements: { _method: post|put }
+
+items_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "DiverPriceLisrBundle:Items:delete" }
+    requirements: { _method: post|delete }

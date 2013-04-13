@@ -1,0 +1,59 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Items list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Name_ru</th>
+                <th>Fullname</th>
+                <th>Partnumber</th>
+                <th>Manufacturer</th>
+                <th>Price</th>
+                <th>Garant</th>
+                <th>Ostatok_lviv</th>
+                <th>Ostatok_kyyiv</th>
+                <th>Ostatok_odesa</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('items_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.name }}</td>
+                <td>{{ entity.nameru }}</td>
+                <td>{{ entity.fullname }}</td>
+                <td>{{ entity.partnumber }}</td>
+                <td>{{ entity.manufacturer }}</td>
+                <td>{{ entity.price }}</td>
+                <td>{{ entity.garant }}</td>
+                <td>{{ entity.ostatoklviv }}</td>
+                <td>{{ entity.ostatokkyyiv }}</td>
+                <td>{{ entity.ostatokodesa }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('items_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('items_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('items_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

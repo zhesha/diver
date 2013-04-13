@@ -74,34 +74,6 @@ class Items
     /**
      * @var integer
      *
-     * @ORM\Column(name="cena_dyler", type="float")
-     */
-    private $cena_dyler;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="cena_gurt", type="float")
-     */
-    private $cena_gurt;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="cena_dribnyj_gurt", type="float")
-     */
-    private $cena_dribnyj_gurt;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="cena_rozdrib", type="float")
-     */
-    private $cena_rozdrib;
-
-    /**
-     * @var integer
-     *
      * @ORM\Column(name="ostatok_lviv", type="integer")
      */
     private $ostatok_lviv;
@@ -121,7 +93,8 @@ class Items
     private $ostatok_odesa;
 
     /**
-     * @ORM\OneToMany(targetEntity="Categories", mappedBy="items")
+     * @ORM\ManyToOne(targetEntity="Categories", inversedBy="items")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     private $category;
 
@@ -160,29 +133,6 @@ class Items
     }
 
     /**
-     * Set fullName
-     *
-     * @param string $fullName
-     * @return Items
-     */
-    public function setFullName($fullName)
-    {
-        $this->fullName = $fullName;
-    
-        return $this;
-    }
-
-    /**
-     * Get fullName
-     *
-     * @return string 
-     */
-    public function getFullName()
-    {
-        return $this->fullName;
-    }
-
-    /**
      * Set price
      *
      * @param integer $price
@@ -212,39 +162,6 @@ class Items
         $this->category = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
-    /**
-     * Add category
-     *
-     * @param \Diver\PriceLisrBundle\Entity\Categories $category
-     * @return Items
-     */
-    public function addCategory(\Diver\PriceLisrBundle\Entity\Categories $category)
-    {
-        $this->category[] = $category;
-    
-        return $this;
-    }
-
-    /**
-     * Remove category
-     *
-     * @param \Diver\PriceLisrBundle\Entity\Categories $category
-     */
-    public function removeCategory(\Diver\PriceLisrBundle\Entity\Categories $category)
-    {
-        $this->category->removeElement($category);
-    }
-
-    /**
-     * Get category
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
     /**
      * Set name_ru
      *
@@ -361,98 +278,6 @@ class Items
     }
 
     /**
-     * Set cena_dyler
-     *
-     * @param float $cenaDyler
-     * @return Items
-     */
-    public function setCenaDyler($cenaDyler)
-    {
-        $this->cena_dyler = $cenaDyler;
-    
-        return $this;
-    }
-
-    /**
-     * Get cena_dyler
-     *
-     * @return float 
-     */
-    public function getCenaDyler()
-    {
-        return $this->cena_dyler;
-    }
-
-    /**
-     * Set cena_gurt
-     *
-     * @param float $cenaGurt
-     * @return Items
-     */
-    public function setCenaGurt($cenaGurt)
-    {
-        $this->cena_gurt = $cenaGurt;
-    
-        return $this;
-    }
-
-    /**
-     * Get cena_gurt
-     *
-     * @return float 
-     */
-    public function getCenaGurt()
-    {
-        return $this->cena_gurt;
-    }
-
-    /**
-     * Set cena_dribnyj_gurt
-     *
-     * @param float $cenaDribnyjGurt
-     * @return Items
-     */
-    public function setCenaDribnyjGurt($cenaDribnyjGurt)
-    {
-        $this->cena_dribnyj_gurt = $cenaDribnyjGurt;
-    
-        return $this;
-    }
-
-    /**
-     * Get cena_dribnyj_gurt
-     *
-     * @return float 
-     */
-    public function getCenaDribnyjGurt()
-    {
-        return $this->cena_dribnyj_gurt;
-    }
-
-    /**
-     * Set cena_rozdrib
-     *
-     * @param float $cenaRozdrib
-     * @return Items
-     */
-    public function setCenaRozdrib($cenaRozdrib)
-    {
-        $this->cena_rozdrib = $cenaRozdrib;
-    
-        return $this;
-    }
-
-    /**
-     * Get cena_rozdrib
-     *
-     * @return float 
-     */
-    public function getCenaRozdrib()
-    {
-        return $this->cena_rozdrib;
-    }
-
-    /**
      * Set ostatok_lviv
      *
      * @param integer $ostatokLviv
@@ -519,5 +344,28 @@ class Items
     public function getOstatokOdesa()
     {
         return $this->ostatok_odesa;
+    }
+
+    /**
+     * Set category
+     *
+     * @param \Diver\PriceLisrBundle\Entity\Categories $category
+     * @return Items
+     */
+    public function setCategory(\Diver\PriceLisrBundle\Entity\Categories $category = null)
+    {
+        $this->category = $category;
+    
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \Diver\PriceLisrBundle\Entity\Categories 
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 }

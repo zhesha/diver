@@ -48,8 +48,7 @@ class Categories
     private $parent;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Items", inversedBy="category")
-     * @ORM\JoinColumn(name="items_id", referencedColumnName="id")
+     * @ORM\OneToMany(targetEntity="Items", mappedBy="category")
      */
     private $items;
 
@@ -101,6 +100,8 @@ class Categories
      */
     public function addChildren(\Diver\PriceLisrBundle\Entity\Categories $children)
     {
+        if($children == $this)
+            throw new \Exception('Operation not allowed');
         $this->children[] = $children;
     
         return $this;
@@ -134,6 +135,8 @@ class Categories
      */
     public function setParent(\Diver\PriceLisrBundle\Entity\Categories $parent = null)
     {
+        if($parent == $this)
+            throw new \Exception('Operation not allowed');
         $this->parent = $parent;
     
         return $this;
@@ -147,29 +150,6 @@ class Categories
     public function getParent()
     {
         return $this->parent;
-    }
-
-    /**
-     * Set items
-     *
-     * @param \Diver\PriceLisrBundle\Entity\Items $items
-     * @return Categories
-     */
-    public function setItems(\Diver\PriceLisrBundle\Entity\Items $items = null)
-    {
-        $this->items = $items;
-    
-        return $this;
-    }
-
-    /**
-     * Get items
-     *
-     * @return \Diver\PriceLisrBundle\Entity\Items 
-     */
-    public function getItems()
-    {
-        return $this->items;
     }
 
     /**
@@ -193,5 +173,43 @@ class Categories
     public function getNameRu()
     {
         return $this->name_ru;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Add items
+     *
+     * @param \Diver\PriceLisrBundle\Entity\Items $items
+     * @return Categories
+     */
+    public function addItem(\Diver\PriceLisrBundle\Entity\Items $items)
+    {
+        $this->items[] = $items;
+    
+        return $this;
+    }
+
+    /**
+     * Remove items
+     *
+     * @param \Diver\PriceLisrBundle\Entity\Items $items
+     */
+    public function removeItem(\Diver\PriceLisrBundle\Entity\Items $items)
+    {
+        $this->items->removeElement($items);
+    }
+
+    /**
+     * Get items
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getItems()
+    {
+        return $this->items;
     }
 }

@@ -1,3 +1,11 @@
 diver_price_lisr_homepage:
     pattern:  /hello/{name}
     defaults: { _controller: DiverPriceLisrBundle:Default:index }
+
+DiverPriceLisrBundle_categories:
+    resource: "@DiverPriceLisrBundle/Resources/config/routing/categories.yml"
+    prefix:   /categories
+
+DiverPriceLisrBundle_items:
+    resource: "@DiverPriceLisrBundle/Resources/config/routing/items.yml"
+    prefix:   /items

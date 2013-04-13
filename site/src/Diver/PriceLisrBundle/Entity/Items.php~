@@ -74,34 +74,6 @@ class Items
     /**
      * @var integer
      *
-     * @ORM\Column(name="cena_dyler", type="float")
-     */
-    private $cena_dyler;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="cena_gurt", type="float")
-     */
-    private $cena_gurt;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="cena_dribnyj_gurt", type="float")
-     */
-    private $cena_dribnyj_gurt;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="cena_rozdrib", type="float")
-     */
-    private $cena_rozdrib;
-
-    /**
-     * @var integer
-     *
      * @ORM\Column(name="ostatok_lviv", type="integer")
      */
     private $ostatok_lviv;
@@ -121,7 +93,8 @@ class Items
     private $ostatok_odesa;
 
     /**
-     * @ORM\OneToMany(targetEntity="Categories", mappedBy="items")
+     * @ORM\ManyToOne(targetEntity="Categories", inversedBy="items")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     private $category;
 
@@ -160,29 +133,6 @@ class Items
     }
 
     /**
-     * Set fullName
-     *
-     * @param string $fullName
-     * @return Items
-     */
-    public function setFullName($fullName)
-    {
-        $this->fullName = $fullName;
-    
-        return $this;
-    }
-
-    /**
-     * Get fullName
-     *
-     * @return string 
-     */
-    public function getFullName()
-    {
-        return $this->fullName;
-    }
-
-    /**
      * Set price
      *
      * @param integer $price
@@ -213,32 +163,206 @@ class Items
     }
     
     /**
-     * Add category
+     * Set name_ru
      *
-     * @param \Diver\PriceLisrBundle\Entity\Categories $category
+     * @param string $nameRu
      * @return Items
      */
-    public function addCategory(\Diver\PriceLisrBundle\Entity\Categories $category)
+    public function setNameRu($nameRu)
     {
-        $this->category[] = $category;
+        $this->name_ru = $nameRu;
     
         return $this;
     }
 
     /**
-     * Remove category
+     * Get name_ru
+     *
+     * @return string 
+     */
+    public function getNameRu()
+    {
+        return $this->name_ru;
+    }
+
+    /**
+     * Set fullname
+     *
+     * @param string $fullname
+     * @return Items
+     */
+    public function setFullname($fullname)
+    {
+        $this->fullname = $fullname;
+    
+        return $this;
+    }
+
+    /**
+     * Get fullname
+     *
+     * @return string 
+     */
+    public function getFullname()
+    {
+        return $this->fullname;
+    }
+
+    /**
+     * Set partnumber
+     *
+     * @param string $partnumber
+     * @return Items
+     */
+    public function setPartnumber($partnumber)
+    {
+        $this->partnumber = $partnumber;
+    
+        return $this;
+    }
+
+    /**
+     * Get partnumber
+     *
+     * @return string 
+     */
+    public function getPartnumber()
+    {
+        return $this->partnumber;
+    }
+
+    /**
+     * Set manufacturer
+     *
+     * @param string $manufacturer
+     * @return Items
+     */
+    public function setManufacturer($manufacturer)
+    {
+        $this->manufacturer = $manufacturer;
+    
+        return $this;
+    }
+
+    /**
+     * Get manufacturer
+     *
+     * @return string 
+     */
+    public function getManufacturer()
+    {
+        return $this->manufacturer;
+    }
+
+    /**
+     * Set garant
+     *
+     * @param integer $garant
+     * @return Items
+     */
+    public function setGarant($garant)
+    {
+        $this->garant = $garant;
+    
+        return $this;
+    }
+
+    /**
+     * Get garant
+     *
+     * @return integer 
+     */
+    public function getGarant()
+    {
+        return $this->garant;
+    }
+
+    /**
+     * Set ostatok_lviv
+     *
+     * @param integer $ostatokLviv
+     * @return Items
+     */
+    public function setOstatokLviv($ostatokLviv)
+    {
+        $this->ostatok_lviv = $ostatokLviv;
+    
+        return $this;
+    }
+
+    /**
+     * Get ostatok_lviv
+     *
+     * @return integer 
+     */
+    public function getOstatokLviv()
+    {
+        return $this->ostatok_lviv;
+    }
+
+    /**
+     * Set ostatok_kyyiv
+     *
+     * @param integer $ostatokKyyiv
+     * @return Items
+     */
+    public function setOstatokKyyiv($ostatokKyyiv)
+    {
+        $this->ostatok_kyyiv = $ostatokKyyiv;
+    
+        return $this;
+    }
+
+    /**
+     * Get ostatok_kyyiv
+     *
+     * @return integer 
+     */
+    public function getOstatokKyyiv()
+    {
+        return $this->ostatok_kyyiv;
+    }
+
+    /**
+     * Set ostatok_odesa
+     *
+     * @param integer $ostatokOdesa
+     * @return Items
+     */
+    public function setOstatokOdesa($ostatokOdesa)
+    {
+        $this->ostatok_odesa = $ostatokOdesa;
+    
+        return $this;
+    }
+
+    /**
+     * Get ostatok_odesa
+     *
+     * @return integer 
+     */
+    public function getOstatokOdesa()
+    {
+        return $this->ostatok_odesa;
+    }
+
+    /**
+     * Set category
      *
      * @param \Diver\PriceLisrBundle\Entity\Categories $category
+     * @return Items
      */
-    public function removeCategory(\Diver\PriceLisrBundle\Entity\Categories $category)
+    public function setCategory(\Diver\PriceLisrBundle\Entity\Categories $category = null)
     {
-        $this->category->removeElement($category);
+        $this->category = $category;
+    
+        return $this;
     }
 
     /**
      * Get category
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Diver\PriceLisrBundle\Entity\Categories 
      */
     public function getCategory()
     {
