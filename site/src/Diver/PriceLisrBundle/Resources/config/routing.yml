@@ -9,3 +9,7 @@ DiverPriceLisrBundle_categories:
 DiverPriceLisrBundle_items:
     resource: "@DiverPriceLisrBundle/Resources/config/routing/items.yml"
     prefix:   /items
+
+DiverPriceLisrBundle_rest:
+    resource: "@DiverPriceLisrBundle/Resources/config/routing/rest.yml"
+    prefix:   /rest

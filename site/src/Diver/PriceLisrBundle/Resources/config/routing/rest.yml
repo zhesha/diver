@@ -1,0 +1,3 @@
+rest_index:
+    pattern:  /index.{_format}
+    defaults: { _controller: "DiverPriceLisrBundle:Rest:index", _format: html }
