@@ -1,0 +1,5 @@
+Diver\PriceLisrBundle\Entity\Items:
+  exclusion_policy: ALL
+  properties:
+    id:
+      expose: true

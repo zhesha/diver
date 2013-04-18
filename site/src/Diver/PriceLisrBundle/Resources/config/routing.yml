@@ -2,6 +2,10 @@ diver_price_lisr_homepage:
     pattern:  /hello/{name}
     defaults: { _controller: DiverPriceLisrBundle:Default:index }
 
+diver_price_lisr_xml:
+    pattern:  /xml
+    defaults: { _controller: DiverPriceLisrBundle:Xml:index }
+
 DiverPriceLisrBundle_categories:
     resource: "@DiverPriceLisrBundle/Resources/config/routing/categories.yml"
     prefix:   /categories
