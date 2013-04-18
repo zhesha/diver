@@ -8,9 +8,11 @@ use Diver\PriceLisrBundle\Entity\Categories;
 
 class XmlController extends Controller
 {
+    private $em;
 
     public function indexAction()
     {
+        $this->em = $this->getDoctrine()->getManager();
         if(!file_exists(__DIR__.'/../../../../web/upload/dylerprice.xml'))
             throw $this->createNotFoundException('Unable to find file.');
 
@@ -19,39 +21,46 @@ class XmlController extends Controller
         $crawler = $crawler->filterXPath('descendant-or-self::root/node');
         $arr = $crawler->extract('isgroup');
 
-        $categories = array();
-        $items = array();
         foreach($arr as $k=>$v){
-            if($v == 1)
-                $categories[] = $this->parseCategory($crawler->eq($k));
-            else
-                $items[] = $this->parseItem($crawler->eq($k));
+            if($v == 1){
+                $this->parseCategory($crawler->eq($k), null);
+            }
+            else{
+                $this->parseItem($crawler->eq($k), null);
+            }
         }
+        $this->em->flush();
         exit;
     }
 
-    private function parseCategory(Crawler $node){
+    private function parseCategory(Crawler $node, $parent){
         $result = array();
-        $result['name'] = $node->filter('name')->text();
-        $result['name_ru'] = $node->filter('name_ru')->text();
+        $cat = new Categories();
+        $cat->setName($node->filter('name')->text());
+        $cat->setNameRu($node->filter('name_ru')->text());
+        $cat->setParent($parent);
+        $this->em->persist($cat);
         $node = $node->filterXPath('node/node');
 
         $arr = $node->extract('isgroup');
         foreach($arr as $k=>$v){
             if($v == 1)
-                $this->parseCategory($node->eq($k));
+                $this->parseCategory($node->eq($k), $cat);
             else
-                $this->parseItem($node->eq($k));
+                $this->parseItem($node->eq($k), $cat);
         }
-        return $result;
+        //return $result;
     }
-    private function parseItem(Crawler $node){
+    private function parseItem(Crawler $node, $cat){
         $result = $node->extract('garant', 'ostatok_lviv', 'ostatok_kyyiv', 'ostatok_odesa');
-        $result['name'] = $node->filter('name')->text();
-        $result['name_ru'] = $node->filter('name_ru')->text();
-        $result['fullname'] = $node->filter('fullname')->text();
-        $result['partnumber'] = $node->filter('partnumber')->text();
-        $result['manufacturer'] = $node->filter('manufacturer')->text();
+        $item = new Items();
+        $item->setName($node->filter('name')->text());
+        $item->setNameRu($node->filter('name_ru')->text());
+        $item->setCategory($cat);
+        $item->getFullname($node->filter('fullname')->text());
+        $item->getPartnumber($node->filter('partnumber')->text());
+        $item->getManufacturer($node->filter('manufacturer')->text());
+        $this->em->persist($item);
 
         return $result;
     }
