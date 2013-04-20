@@ -1,29 +1,32 @@
 <?php
-namespace Diver\PriceLisrBundle\Controller;
+namespace Diver\PriceLisrBundle\XmlParser;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\DomCrawler\Crawler;
 use Diver\PriceLisrBundle\Entity\Items;
 use Diver\PriceLisrBundle\Entity\Categories;
+use Doctrine\ORM\EntityManager;
 
-class XmlController extends Controller
+class XmlParser
 {
     private $em;
-    private $emCat;
+    private $counter = 0;
 
-    public function indexAction()
+    public function __construct(EntityManager $entityManager)
     {
-        $xmlParser = $this->get('xml_parser');
-        $xmlParser->parseFromFile();
-        exit;
+        $this->em = $entityManager;
+    }
 
-        $this->em = $this->getDoctrine()->getManager();
-        $this->emCat = $this->getDoctrine()->getManager();
+    public function parseFromFile()
+    {
         if(!file_exists(__DIR__.'/../../../../web/upload/dylerprice.xml'))
-            throw $this->createNotFoundException('Unable to find file.');
-
+            throw new \Exception('Unable to find file.');
         //$crawler = new Crawler(mb_convert_encoding(file_get_contents(__DIR__.'/../../../../web/upload/dylerprice.xml', true), "UTF-8", 'cp-1251'));
-        $crawler = new Crawler(file_get_contents(__DIR__.'/../../../../web/upload/dylerprice.xml', true));
+        $this->parse(file_get_contents(__DIR__.'/../../../../web/upload/dylerprice.xml', true));
+    }
+
+    public function parse($str)
+    {
+        $crawler = new Crawler($str);
 
         $crawler = $crawler->filterXPath('descendant-or-self::root/node');
         $arr = $crawler->extract('isgroup');
@@ -36,20 +39,17 @@ class XmlController extends Controller
                 $this->parseItem($crawler->eq($k), null);
             }
         }
-        //$this->emCat->flush();
         $this->em->flush();
-        exit;
+        return true;
     }
 
     private function parseCategory(Crawler $node, $parent){
-        $result = array();
         $cat = new Categories();
         $cat->setName($node->filter('name')->text());
-        //echo '<br>category: '.$node->filter('name')->text();
         $cat->setNameRu($node->filter('name_ru')->text());
         $cat->setParent($parent);
-        $this->emCat->persist($cat);
-        $this->emCat->flush();
+        $this->em->persist($cat);
+        //$this->em->flush();
         $node = $node->filterXPath('node/node');
 
         $arr = $node->extract('isgroup');
@@ -59,21 +59,21 @@ class XmlController extends Controller
             else
                 $this->parseItem($node->eq($k), $cat);
         }
-        //return $result;
     }
     private function parseItem(Crawler $node, $cat){
-        $result = $node->extract('garant', 'ostatok_lviv', 'ostatok_kyyiv', 'ostatok_odesa');
+        $this->counter++;
+        if($this->counter > 1000){
+            $this->em->flush();
+            $this->counter = 0;
+        }
+        //$result = $node->extract('garant', 'ostatok_lviv', 'ostatok_kyyiv', 'ostatok_odesa');
         $item = new Items();
         $item->setName($node->filter('name')->text());
-        //echo '<br>item: '.$node->filter('name')->text();
         $item->setNameRu($node->filter('name_ru')->text());
         $item->setCategory($cat);
         $item->getFullname($node->filter('fullname')->text());
         $item->getPartnumber($node->filter('partnumber')->text());
         $item->getManufacturer($node->filter('manufacturer')->text());
         $this->em->persist($item);
-        //$this->em->flush();
-
-        return $result;
     }
 }

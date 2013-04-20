@@ -9,3 +9,9 @@ fos_rest:
             html: true
         failed_validation: HTTP_BAD_REQUEST
         default_engine: twig
+
+services:
+    xml_parser:
+        class:        Diver\PriceLisrBundle\XmlParser\XmlParser
+        arguments:
+                entityManager: "@doctrine.orm.entity_manager"
