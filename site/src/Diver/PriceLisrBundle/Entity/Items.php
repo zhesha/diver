@@ -39,56 +39,56 @@ class Items
     /**
      * @var string
      *
-     * @ORM\Column(name="fullname", type="text")
+     * @ORM\Column(name="fullname", type="text", nullable=true)
      */
     private $fullname;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="partnumber", type="string", length=255)
+     * @ORM\Column(name="partnumber", type="string", length=255, nullable=true)
      */
     private $partnumber;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="manufacturer", type="string", length=255)
+     * @ORM\Column(name="manufacturer", type="string", length=255, nullable=true)
      */
     private $manufacturer;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="price", type="integer")
+     * @ORM\Column(name="price", type="integer", nullable=true)
      */
     private $price;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="garant", type="integer")
+     * @ORM\Column(name="garant", type="integer", nullable=true)
      */
     private $garant;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="ostatok_lviv", type="integer")
+     * @ORM\Column(name="ostatok_lviv", type="integer", nullable=true)
      */
     private $ostatok_lviv;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="ostatok_kyyiv", type="integer")
+     * @ORM\Column(name="ostatok_kyyiv", type="integer", nullable=true)
      */
     private $ostatok_kyyiv;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="ostatok_odesa", type="integer")
+     * @ORM\Column(name="ostatok_odesa", type="integer", nullable=true)
      */
     private $ostatok_odesa;
 
