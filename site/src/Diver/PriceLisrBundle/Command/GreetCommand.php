@@ -14,24 +14,13 @@ class GreetCommand extends Command
         $this
             ->setName('diver:parsexml')
             ->setDescription('parse XML')
-            /*->addArgument(
-            'name',
-            InputArgument::OPTIONAL,
-            'Who do you want to greet?'
-        )*/
-            /*->addOption(
-            'yell',
-            null,
-            InputOption::VALUE_NONE,
-            'If set, the task will yell in uppercase letters'
-        )*/
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $xmlParser = $this->getApplication()->getKernel()->getContainer()->get('xml_parser');
-        $xmlParser->parseFromFile();
+        $xmlParser->parseFromFile(__DIR__.'/../../../../web/upload/dylerprice.xml');
 
         $output->writeln('OK');
     }

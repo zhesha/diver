@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<root>
+	<node kod="36219" isgroup="1">
+		<name>Товари МОБІЛ (аксесуари)</name>
+		<name_ru>Товари МОБІЛ (аксесуари)</name_ru>
+		<node kod="37802" isgroup="1">
+			<name>Мобільні дрібниці (підставки, шнурки, брелки ....) МОБІЛ</name>
+			<name_ru>Мобільні дрібниці (підставки, шнурки, брелки ....) МОБІЛ</name_ru>
+			<node kod="37803" isgroup="1">
+				<name>Брелки</name>
+				<name_ru>Брелки</name_ru>
+				<node kod="104594" isgroup="0" garant="0" cena_dyler="1.75" cena_gurt="2" cena_dribnyj_gurt="2.5" cena_rozdrib="3" ostatok_lviv="1" ostatok_kyyiv="0" ostatok_odesa="0">
+					<name>Брелки с камешками в ассортименте (блистер)</name>
+					<name_ru>Брелки с камешками в ассортименте (блистер)</name_ru>
+					<fullname> Брелки с камешками в ассортименте (блистер) Брелки  з камінчиками NEW в асортименті (блістер)</fullname>
+					<partnumber/>
+					<manufacturer>Другие</manufacturer>
+				</node>
+				<node kod="49598" isgroup="0" garant="0" cena_dyler="188.78" cena_gurt="190.53" cena_dribnyj_gurt="192.28" cena_rozdrib="0" ostatok_lviv="1" ostatok_kyyiv="0" ostatok_odesa="0">
+					<name>Брелок для моб. телефону</name>
+					<name_ru>Брелок для моб. телефона</name_ru>
+					<fullname>Брелок для моб. телефона  </fullname>
+					<partnumber/>
+					<manufacturer>NoName</manufacturer>
+				</node>
+				<node kod="78233" isgroup="0" garant="0" cena_dyler="3.4" cena_gurt="3.8" cena_dribnyj_gurt="4.5" cena_rozdrib="5" ostatok_lviv="1" ostatok_kyyiv="0" ostatok_odesa="0">
+					<name>Брелок для моб. телефону "Spinos" з кам."Swarovski" виноград</name>
+					<name_ru>Брелок для моб. телефона "Spinos" з кам."Swarovski" виноград</name_ru>
+					<fullname>Брелок для моб. телефона "Spinos" з кам."Swarovski" виноград </fullname>
+					<partnumber/>
+					<manufacturer>NoName</manufacturer>
+				</node>
+				<node kod="100772" isgroup="0" garant="0" cena_dyler="3.4" cena_gurt="3.8" cena_dribnyj_gurt="4.5" cena_rozdrib="5" ostatok_lviv="0" ostatok_kyyiv="0" ostatok_odesa="0">
+					<name>Брелок для моб. телефону "Spinos" з камінчиками в асортименті</name>
+					<name_ru>Брелок для моб. телефона "Spinos" с камешками в ассортименте</name_ru>
+					<fullname>Брелок для моб. телефона "Spinos" с камешками в ассортименте </fullname>
+					<partnumber/>
+					<manufacturer>NoName</manufacturer>
+				</node>
+				<node kod="38818" isgroup="0" garant="0" cena_dyler="1.45" cena_gurt="1.55" cena_dribnyj_gurt="1.8" cena_rozdrib="2" ostatok_lviv="1" ostatok_kyyiv="0" ostatok_odesa="0">
+					<name>Брелок для моб. телефону Брелки  з камінчиками</name>
+					<name_ru>Брелок для моб. телефона Брелки  з камінчиками</name_ru>
+					<fullname>Брелок для моб. телефона Брелки  з камінчиками Брелки  з камінчиками</fullname>
+					<partnumber/>
+					<manufacturer>NoName</manufacturer>
+				</node>
+			</node>
+		</node>
+	</node>
+</root>

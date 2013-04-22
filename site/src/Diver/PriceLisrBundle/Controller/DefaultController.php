@@ -7,9 +7,9 @@ use Symfony\Component\Security\Core\SecurityContext;
 
 class DefaultController extends Controller
 {
-    public function indexAction($name)
+    public function indexAction()
     {
-        return $this->render('DiverPriceLisrBundle:Default:index.html.twig', array('name' => $name));
+        return $this->redirect($this->generateUrl('items'));
     }
 
     public function loginAction()

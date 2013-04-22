@@ -2,6 +2,7 @@
 namespace Diver\PriceLisrBundle\Controller;
 
 use FOS\RestBundle\Controller\FOSRestController;
+use Symfony\Component\HttpFoundation\Request;
 
 class RestController extends FOSRestController
 {

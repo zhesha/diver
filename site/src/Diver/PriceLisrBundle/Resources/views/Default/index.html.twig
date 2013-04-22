@@ -1,1 +1,8 @@
-Hello {{ name }}!
+{% extends 'DiverPriceLisrBundle::default.html.twig' %}
+
+{% block content -%}
+    <form action="{{ path('diver_price_lisr_xml_parse')}}" method="post" enctype="multipart/form-data">
+        <input type="file" name="upfile">
+        <input type="submit">
+    </form>
+{% endblock %}
